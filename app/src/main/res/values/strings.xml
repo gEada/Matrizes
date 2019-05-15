@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Matriz Ultra</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Matriz Ultra</string>
+    <string name="nav_header_subtitle">arthur.9.konrad@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Opções</string>
+    <string name="action_exit">Sair</string>
+    <string name="matriz_A">Matriz A</string>
+    <string name="matriz_B">Matriz B</string>
+    <string name="operacoes">Operações</string>
+    <string name="resultado">Resultado</string>
+    <string name="share">Compartilhar</string>
+    <string name="others">Outros</string>
+</resources>
