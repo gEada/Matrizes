@@ -12,11 +12,15 @@ public class ControllerMatrizB extends ControllerMatriz {
         boolean valido;
         if (matriz.length != m){
             valido = false;
+            this.setCriada(false);
         }else{
             valido = true;
+            this.setMatriz(new ModelMatrizB(m, n));
+            this.getMatriz().setMatriz(matriz);
+            this.setCriada(true);
+
         }
 
-        this.setMatriz(new ModelMatrizB(m, n));
 
         return valido;
     }

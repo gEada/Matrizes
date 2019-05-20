@@ -148,5 +148,6 @@ public class MainActivity extends AppCompatActivity
         Log.i("teste", "" + controllerMatrizA.criarMatriz(2,2, teste));
         Log.i("teste", "" + teste.length);
 
+
     }
 }

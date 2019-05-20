@@ -1,15 +1,11 @@
 package android.konrad.matrizes.controller;
 
 import android.konrad.matrizes.model.ModelMatriz;
-import android.konrad.matrizes.model.ModelMatrizA;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class ControllerMatriz {
 
     private ModelMatriz matriz;
-    private boolean validade;
+    private boolean criada;
 
     public ControllerMatriz() {
     }
@@ -20,16 +16,31 @@ public abstract class ControllerMatriz {
         return matriz;
     }
 
+
+    // Zera a matriz apenas
+
+    public void zerarMatriz(){
+        double[][] matrizZerada = new double[matriz.getM()][matriz.getN()];
+
+        for (int i=0; i < this.matriz.getM(); i++){
+            for (int j=0; j < this.matriz.getN(); j++){
+                matrizZerada[i][j] = 0;
+            }
+            this.matriz.setMatriz(matrizZerada);
+        }
+
+    }
+
     public void setMatriz(ModelMatriz matriz) {
         this.matriz = matriz;
     }
 
-    public boolean isValidade() {
-        return validade;
+    public boolean isCriada() {
+        return criada;
     }
 
-    public void setValidade(boolean validade) {
-        this.validade = validade;
+    public void setCriada(boolean criada) {
+        this.criada = criada;
     }
 }
 
