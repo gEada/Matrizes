@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        teste();
+
     }
 
     @Override
@@ -132,22 +132,5 @@ public class MainActivity extends AppCompatActivity
         builder.show();
     }
 
-    // ignore
-    private void teste(){
-        double teste[][] = new double[2][2];
-        for (int i=0;i<2;i++){
 
-            for (int j=0;j<2;j++){
-                teste[i][j] = 1;
-            }
-        }
-
-
-        ControllerMatriz controllerMatrizA = new ControllerMatrizA();
-
-        Log.i("teste", "" + controllerMatrizA.criarMatriz(2,2, teste));
-        Log.i("teste", "" + teste.length);
-
-
-    }
 }
