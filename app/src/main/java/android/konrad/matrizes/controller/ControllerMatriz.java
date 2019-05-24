@@ -4,35 +4,60 @@ import android.konrad.matrizes.model.ModelMatriz;
 
 public abstract class ControllerMatriz {
 
-    private ModelMatriz matriz;
+    private ModelMatriz matrizObj;
     private boolean criada;
 
     public ControllerMatriz() {
     }
 
-    public abstract boolean criarMatriz(int m, int n, double[][] matriz);
+    public abstract boolean criarMatriz(int n, int m, double[][] matriz);
 
-    public ModelMatriz getMatriz() {
-        return matriz;
+    /**
+     * Obtem a matriz como array
+     * @return Retorna a Matriz, tanto A ou B em array bimidimensional
+     */
+    public double[][] obterMatrizArray(){
+        return this.getMatrizObj().getMatriz();
     }
 
+    /**
+     * Obtem o objeto matriz da ModelMatriz, utilizar somente na Controller
+     * @return Retorna o objeto Matriz, tanto A ou B
+     */
+    public ModelMatriz getMatrizObj() {
+        return matrizObj;
+    }
 
-    // Zera a matriz apenas
+    /**
+     * Zera a matriz caso exista
+     * @return Retorna um boolean, true se foi possivel zerar a matriz e false caso algum erro tenha ocorrido
+     */
 
-    public void zerarMatriz(){
-        double[][] matrizZerada = new double[matriz.getM()][matriz.getN()];
+    public boolean zerarMatriz(){
 
-        for (int i=0; i < this.matriz.getM(); i++){
-            for (int j=0; j < this.matriz.getN(); j++){
-                matrizZerada[i][j] = 0;
+        boolean sucesso = true;
+
+        double[][] matrizZerada = new double[matrizObj.getM()][matrizObj.getN()];
+
+        if(this.isCriada()) {
+            for (int i = 0; i < this.matrizObj.getM(); i++) {
+                for (int j = 0; j < this.matrizObj.getN(); j++) {
+                    matrizZerada[i][j] = 0;
+                }
+                this.matrizObj.setMatriz(matrizZerada);
             }
-            this.matriz.setMatriz(matrizZerada);
+
+            sucesso = true;
+        }else{
+            sucesso = false;
         }
 
+        return sucesso;
+
     }
 
-    public void setMatriz(ModelMatriz matriz) {
-        this.matriz = matriz;
+    public void setMatrizObj(ModelMatriz matriz) {
+        this.matrizObj = matriz;
     }
 
     public boolean isCriada() {

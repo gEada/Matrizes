@@ -2,11 +2,8 @@ package android.konrad.matrizes;
 
 import android.konrad.matrizes.controller.ControllerMatriz;
 import android.konrad.matrizes.controller.ControllerMatrizA;
-import android.util.Log;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -31,11 +28,14 @@ public class ExampleUnitTest {
 
         ControllerMatriz controllerMatrizA = new ControllerMatrizA();
 
+
         controllerMatrizA.criarMatriz(2,2, teste);
 
+
        if(controllerMatrizA.isCriada()) {
-            double a1 = controllerMatrizA.getMatriz().getMatriz()[0][0];
-            double a2 = controllerMatrizA.getMatriz().getMatriz()[1][0];
+            double a1 = controllerMatrizA.obterMatrizArray()[0][0];
+            double a2 = controllerMatrizA.obterMatrizArray()[0][1];
+
        }
 
 
