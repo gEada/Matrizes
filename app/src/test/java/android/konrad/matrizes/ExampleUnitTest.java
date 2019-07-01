@@ -2,6 +2,7 @@ package android.konrad.matrizes;
 
 import android.konrad.matrizes.controller.ControllerMatriz;
 import android.konrad.matrizes.controller.ControllerMatrizA;
+import android.konrad.matrizes.controller.ControllerOperacoes;
 
 import org.junit.Test;
 
@@ -15,11 +16,11 @@ public class ExampleUnitTest {
     public void testeMatrizes() {
         double teste[][] = new double[2][2];
 
-        int num = 2;
+        int num = 0;
         for (int i=0;i<2;i++){
 
             for (int j=0;j<2;j++){
-                num*=num;
+                num++;
                 teste[i][j] = num;
             }
 
@@ -31,10 +32,15 @@ public class ExampleUnitTest {
 
         controllerMatrizA.criarMatriz(2,2, teste);
 
+        double j = teste[0][0];
 
-       if(controllerMatrizA.isCriada()) {
-            double a1 = controllerMatrizA.obterMatrizArray()[0][0];
-            double a2 = controllerMatrizA.obterMatrizArray()[0][1];
+        ControllerOperacoes controllerOperacoes = new ControllerOperacoes();
+       //teste = controllerOperacoes.obterDivisao(teste, 2);
+
+       double determinante = controllerOperacoes.obterDeterminante(teste);
+
+
+
 
        }
 
@@ -43,4 +49,3 @@ public class ExampleUnitTest {
 
 
     }
-}
