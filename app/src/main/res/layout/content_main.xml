@@ -8,5 +8,14 @@
     tools:context=".view.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <LinearLayout
+        android:id="@+id/fragmentmodelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

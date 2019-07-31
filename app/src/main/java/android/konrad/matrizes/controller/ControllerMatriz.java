@@ -14,7 +14,7 @@ public abstract class ControllerMatriz {
 
     /**
      * Obtem a matriz como array
-     * @return Retorna a Matriz, tanto A ou B em array bimidimensional
+     * @return Retorna a Matriz, tanto A ou B em array bidimensional
      */
     public double[][] obterMatrizArray(){
         return this.getMatrizObj().getMatriz();
@@ -35,7 +35,7 @@ public abstract class ControllerMatriz {
 
     public boolean zerarMatriz(){
 
-        boolean sucesso = true;
+        boolean sucesso;
 
         double[][] matrizZerada = new double[matrizObj.getM()][matrizObj.getN()];
 
