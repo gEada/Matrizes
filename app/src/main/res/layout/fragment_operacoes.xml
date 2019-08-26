@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FragmentModelo">
+
+
+    <TextView
+        android:id="@+id/txtMatrizA"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+
+
+        android:layout_marginTop="0dp"
+        android:background="#00000000"
+        android:hapticFeedbackEnabled="true"
+        android:text="@string/matriz_A"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnDeterminanteA"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:layout_below="@id/txtMatrizA"
+        android:text="@string/determinante" />
+
+    <Button
+        android:id="@+id/btnInversoA"
+        android:layout_width="131dp"
+        android:layout_height="72dp"
+
+        android:layout_below="@id/btnDeterminanteA"
+        android:text="@string/inverso" />
+
+    <Button
+        android:id="@+id/btnMultiplicarA"
+        android:layout_width="135dp"
+        android:layout_height="72dp"
+
+        android:layout_below="@id/btnInversoA"
+        android:text="@string/multiplicar" />
+
+    <EditText
+        android:id="@+id/numMultiplicarA"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+
+        android:ems="2"
+        android:layout_toRightOf="@id/btnMultiplicarA"
+        android:layout_alignBottom="@id/btnMultiplicarA"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnDividirA"
+        android:layout_width="135dp"
+        android:layout_height="72dp"
+
+        android:layout_below="@id/btnMultiplicarA"
+        android:text="@string/dividir" />
+
+    <EditText
+        android:id="@+id/numDividirA"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:ems="2"
+        android:layout_toRightOf="@id/btnDividirA"
+        android:layout_alignBottom="@id/btnDividirA"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/txtMatrizB"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+
+        android:layout_alignRight="@id/txtMatrizA"
+        android:layout_alignParentRight="true"
+        android:text="@string/matriz_B"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnDeterminanteB"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+
+
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/txtMatrizB"
+        android:text="@string/determinante" />
+
+    <Button
+        android:id="@+id/btnInversoB"
+        android:layout_width="131dp"
+        android:layout_height="72dp"
+
+
+        android:layout_below="@id/btnDeterminanteB"
+        android:layout_alignParentRight="true"
+        android:text="@string/inverso" />
+
+    <Button
+        android:id="@+id/btnMultiplicarB"
+        android:layout_width="135dp"
+        android:layout_height="72dp"
+
+        android:layout_below="@id/btnInversoB"
+        android:layout_alignParentRight="true"
+        android:text="@string/multiplicar" />
+
+    <EditText
+        android:id="@+id/numMultiplicarB"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:ems="2"
+        android:layout_toLeftOf="@id/btnMultiplicarB"
+        android:layout_alignBottom="@id/btnMultiplicarB"
+
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnDividirB"
+        android:layout_width="135dp"
+        android:layout_height="72dp"
+        android:layout_below="@id/btnMultiplicarB"
+        android:layout_alignParentRight="true"
+        android:text="@string/dividir" />
+
+    <EditText
+        android:id="@+id/numDivirB"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:ems="2"
+        android:layout_toLeftOf="@id/btnDividirB"
+        android:layout_alignBottom="@id/btnDividirB"
+
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnSomar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnDividirA"
+        android:layout_alignRight="@id/btnDividirA"
+        android:text="A + B" />
+
+    <Button
+        android:id="@+id/btnMultiplicar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/numDividirA"
+
+        android:layout_toRightOf="@id/btnDividirA"
+        android:layout_toLeftOf="@id/btnDividirB"
+        android:text="A x B" />
+
+    <Button
+    android:id="@+id/btnSubtrair"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/btnDividirB"
+        android:layout_alignLeft="@id/btnDividirB"
+    android:text="A - B" />
+
+
+
+    </RelativeLayout>
