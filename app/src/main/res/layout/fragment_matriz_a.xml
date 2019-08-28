@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FragmentModelo">
+
+    <Button
+        android:id="@+id/btnPlus"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/btnMinus"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="-" />
+
+
+  <GridLayout
+      android:id="@+id/gl"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_below="@id/btnPlus"
+      android:columnCount="2"
+      android:rowCount="2"
+      android:layout_centerHorizontal="true"
+
+
+      >
+
+
+  </GridLayout>
+
+
+
+
+</RelativeLayout>

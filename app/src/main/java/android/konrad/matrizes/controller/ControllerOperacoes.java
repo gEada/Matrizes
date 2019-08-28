@@ -80,6 +80,15 @@ public class ControllerOperacoes extends CalculosMatriz {
         return calcularMatrizInversa(matriz);
     }
 
+    /**
+     * Método para obter a subtracao de duas matrizes
+     * @param matriz1 O array bidimensional da primeira Matriz da subtraçao
+     * @param matriz2 O array bidimensional da segunda Matriz da subtração
+     * @return Retorna se o processo tenha êxito, a matriz da subtração das duas matrizes, caso contrário retorna null
+     */
+    public double[][] obterSubtracaoMatrizes(double[][] matriz1, double[][] matriz2){
 
+        return calcularSubtracaoMatrizes(matriz1, matriz2);
+    }
 
 }

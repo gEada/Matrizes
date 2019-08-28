@@ -95,6 +95,28 @@ public class CalculosMatriz {
         return resultado;
     }
 
+    protected  double[][] calcularSubtracaoMatrizes(double[][] matriz1, double[][] matriz2){
+        int m1 = matriz1.length; // n°  linhas da  matriz 1
+        int n1 = matriz1[0].length; // n° Colunas da matriz n1
+
+        int m2 = matriz2.length; // n° linhas da matriz 2
+        int n2 = matriz2[0].length; // n° colunas da matriz 2
+
+        double resultado[][];
+        if (m1 == m2 && n1 == n2) {
+            resultado = new double[m1][n1];
+
+            for (int i = 0; i < m1; i++) {
+                for (int j = 0; j < n1; j++) {
+                    resultado[i][j] = matriz1[i][j] - matriz2[i][j];
+                }
+            }
+        } else {
+            resultado = null;
+        }
+        return resultado;
+    }
+
 
     protected double[][] calcularMultiplicacaoMatrizes(double[][] matriz1, double[][] matriz2) {
         int m1 = matriz1[0].length;
@@ -125,7 +147,7 @@ public class CalculosMatriz {
     }
 
 
-    // TODO: Implementar método de calcular a matriz inversa
+
     // créditos: https://www.sanfoundry.com/java-program-find-inverse-matrix/
     protected double[][] calcularMatrizInversa(double[][] matriz) {
         int n = matriz.length;

@@ -16,4 +16,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="matriza">Matriz A</string>
+    <string name="determinante">Determinante</string>
+    <string name="inverso">Inverso</string>
+    <string name="multiplicar">Multiplicar por:</string>
+    <string name="dividir">Dividir por:</string>
+    <string name="axb">A X B</string>
 </resources>
