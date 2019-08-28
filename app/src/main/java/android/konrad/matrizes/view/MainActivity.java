@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.konrad.matrizes.R;
 import android.konrad.matrizes.controller.ControllerMatriz;
 import android.konrad.matrizes.controller.ControllerMatrizA;
+import android.konrad.matrizes.fragments.FragmentMatrizA;
+import android.konrad.matrizes.fragments.FragmentMatrizB;
+import android.konrad.matrizes.fragments.FragmentMatrizResultado;
 import android.konrad.matrizes.fragments.FragmentModelo;
+import android.konrad.matrizes.fragments.FragmentOperacoes;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,10 +35,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,18 +47,18 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentManager = getSupportFragmentManager();
 
-        fragmentManager.beginTransaction().replace(R.id.fragmentmodelo, new FragmentModelo()).commit();
+
 
     }
 
@@ -103,15 +107,26 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            setTitle(R.string.matriz_A);
+          fragmentManager.beginTransaction().
+                  replace(R.id.fragmentmodelo, new FragmentMatrizA())
+                  .commit();
 
-          //  Intent intent = new Intent(MainActivity.this, MatrizAActivity.class);
 
-         //   startActivity(intent);
 
         } else if (id == R.id.nav_gallery) {
 
+            setTitle(R.string.matriz_B);
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentmodelo, new FragmentMatrizB())
+                    .commit();
+
         } else if (id == R.id.nav_slideshow) {
+
+            setTitle("Operações");
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentmodelo, new FragmentOperacoes())
+                    .commit();
 
         } else if (id == R.id.nav_manage) {
 
