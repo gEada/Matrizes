@@ -2,10 +2,12 @@ package android.konrad.matrizes.fragments;
 
 import android.content.Context;
 import android.konrad.matrizes.R;
+import android.konrad.matrizes.controller.ControllerMatrizB;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ public class FragmentMatrizB extends Fragment {
 
     private FragmentMatrizA.OnFragmentInteractionListener mListener;
 
+    EnviarMatrizB EMB;
+
 
     private Button btnMais;
     private  Button btnMenos;
@@ -35,6 +39,8 @@ public class FragmentMatrizB extends Fragment {
 
     private int linhas;
     private  int colunas;
+
+    EditText editText[];
 
     public FragmentMatrizB() {
     }
@@ -133,7 +139,63 @@ public class FragmentMatrizB extends Fragment {
         }
     }
 
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
+        try {
+            EMB = (EnviarMatrizB) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException("Erro ao enviar matriz. Tente novamente");
+        }
+    }
+    /**
+     *
+     * @return Retorna o array da matriz criado caso tenha sucesso, retornará null caso ocorra algum erro
+     */
+    private double[][] criarMatriz(){
+
+
+        double [][] resultado;
+
+        try {
+            ControllerMatrizB controllerMatrizB;
+
+            double[][] matriz = new double[this.colunas][this.linhas];
+
+
+            int aux = 0;
+
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz[0].length; j++) {
+                    try {
+                        matriz[i][j] = Double.parseDouble(editText[aux].getText().toString());
+                    }catch(Exception e){
+                        matriz[i][j] = 0.0d;
+                    }
+                    Log.i("teste", editText[aux].getText().toString());
+                    aux++;
+                }
+
+            }
+
+            controllerMatrizB = new ControllerMatrizB();
+            if (controllerMatrizB.criarMatriz(this.linhas, this.colunas, matriz)) {
+                Toast.makeText(context, "Sucesso", Toast.LENGTH_SHORT).show();
+                Log.i("fragmentmatrizb", "SUCESSO!");
+                resultado = controllerMatrizB.obterMatrizArray();
+            } else {
+                Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show();
+                Log.e("fragmatrizb", "ERRO!");
+                resultado = null;
+            }
+
+            return resultado;
+        }catch(Exception e){
+            Log.e("fragmentmatriz", "ERRO: " + e.getMessage());
+            return null;
+        }
+
+    }
 
 
 
@@ -148,11 +210,11 @@ public class FragmentMatrizB extends Fragment {
         gridLayout.removeAllViews();
         gridLayout.setColumnCount(colunas);
         gridLayout.setRowCount(linhas);
-        EditText editText[] = new EditText[linhas * colunas];
-        Button button[] = new Button[linhas * colunas];
+        this.editText = new EditText[this.linhas * this.colunas];
+      //  Button button[] = new Button[linhas * colunas];
 
 
-        for (int i = 0; i < button.length; i++) {
+        for (int i = 0; i < this.editText.length; i++) {
 
 
             // button[i] = new Button(context);
@@ -165,5 +227,15 @@ public class FragmentMatrizB extends Fragment {
 
             gridLayout.addView(editText[i]);
         }
+    }
+
+    public interface EnviarMatrizB{
+        void enviarDadosMB(double[][] matriz);
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        EMB.enviarDadosMB(criarMatriz());
     }
 }

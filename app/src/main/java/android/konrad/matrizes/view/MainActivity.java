@@ -27,9 +27,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentMatrizA.EnviarMatrizA, FragmentMatrizB.EnviarMatrizB  {
 
     FragmentManager fragmentManager;
+    public static final String BUNDLEMATRIZ1 = "matriz1bundle";
+    public static final String BUNDLEMATRIZ2 = "matriz2bundle";
+
+    private double[][] matrizA;
+    private double[][] matrizB;
+
+    FragmentOperacoes fragmentOperacoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentManager = getSupportFragmentManager();
+
+        fragmentOperacoes = new FragmentOperacoes();
 
 
 
@@ -108,9 +117,15 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             setTitle(R.string.matriz_A);
+
+            FragmentMatrizA fragmentMatrizA = new FragmentMatrizA();
+
+
           fragmentManager.beginTransaction().
-                  replace(R.id.fragmentmodelo, new FragmentMatrizA())
+                  replace(R.id.fragmentmodelo, fragmentMatrizA)
                   .commit();
+
+
 
 
 
@@ -123,10 +138,19 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
+            // Passar valores
+
+           // Bundle bundle = new Bundle();
+           // bundle.putString("teste", "TESTANDO");
+
+           // fragmentOperacoes.setArguments(bundle);
+
+
             setTitle("Operações");
+
             fragmentManager.beginTransaction()
-                    .replace(R.id.fragmentmodelo, new FragmentOperacoes())
-                    .commit();
+                   .replace(R.id.fragmentmodelo, fragmentOperacoes)
+            .commit();
 
         } else if (id == R.id.nav_manage) {
 
@@ -155,4 +179,28 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void enviarDadosMA(double[][] matriz) {
+
+        // TODO: ALTERAR
+        Log.i("acitivty", "SUCESSO???");
+      //  fragmentOperacoes = new FragmentOperacoes();
+        fragmentOperacoes.receberMatrizA(matriz);
+
+
+     //   fragmentManager.beginTransaction().replace(R.id.fragmentmodelo, fragmentOperacoes).commit();
+
+    }
+
+    @Override
+    public void enviarDadosMB(double[][] matriz) {
+        Log.i("acitivty", "SUCESSO???");
+        // TODO: ALTERAR
+
+       // FragmentOperacoes fragmentOperacoes = new FragmentOperacoes();
+        fragmentOperacoes.receberMatrizB(matriz);
+
+       // fragmentManager.beginTransaction().replace(R.id.fragmentmodelo, fragmentOperacoes).commit();
+
+    }
 }
