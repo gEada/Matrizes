@@ -1,24 +1,29 @@
 package android.konrad.matrizes.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.konrad.matrizes.R;
+import android.konrad.matrizes.controller.ControllerOperacoes;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class FragmentOperacoes extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
 
     private String mParam1;
     private String mParam2;
+
+    ControllerOperacoes controllerOperacoes;
 
 
     Context context;
@@ -37,8 +42,8 @@ public class FragmentOperacoes extends Fragment {
     private Button btnMultiplicar;
     private Button btnSubtrair;
 
-
-
+    private double[][] matrizA;
+    private double[][] matrizB;
 
 
     private OnFragmentInteractionListener mListener;
@@ -49,11 +54,10 @@ public class FragmentOperacoes extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static FragmentOperacoes newInstance(String param1, String param2) {
+    public static FragmentOperacoes newInstance() {
         FragmentOperacoes fragment = new FragmentOperacoes();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
 
         return fragment;
@@ -64,9 +68,14 @@ public class FragmentOperacoes extends Fragment {
         super.onCreate(savedInstanceState);
 
         context = getContext();
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+        Bundle bundle = getArguments();
+
+        controllerOperacoes = new ControllerOperacoes();
+
+        if (bundle != null) {
+            String test = bundle.getString("teste");
+            Toast.makeText(context, test, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -75,10 +84,14 @@ public class FragmentOperacoes extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_operacoes, container, false);
 
+
+
         btnDerterminanteA = view.findViewById(R.id.btnDeterminanteA);
         btnDeterminanteB = view.findViewById(R.id.btnDeterminanteB);
         btnDividirA = view.findViewById(R.id.btnDividirA);
         btnDividirB = view.findViewById(R.id.btnDividirB);
+        btnMultiplicarA = view.findViewById(R.id.btnMultiplicarA);
+        btnMultiplicarB = view.findViewById(R.id.btnMultiplicarB);
         btnInversoA = view.findViewById(R.id.btnInversoA);
         btnInversoB = view.findViewById(R.id.btnInversoB);
         btnSomar = view.findViewById(R.id.btnSomar);
@@ -87,16 +100,26 @@ public class FragmentOperacoes extends Fragment {
 
 
         btnDerterminanteA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                    @Override
+                    public void onClick(View v) {
+                        if(matrizA != null) {
+                            double[][] msg = matrizA;
+                            Toast
+                                    .makeText(context, "" + controllerOperacoes.obterDeterminante(msg), Toast.LENGTH_LONG)
+                                    .show();
+                        }
             }
         });
 
         btnDeterminanteB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(matrizB != null) {
+                    double[][] msg = matrizB;
+                    Toast
+                            .makeText(context, "" + controllerOperacoes.obterDeterminante(msg), Toast.LENGTH_LONG)
+                            .show();
+                }
             }
         });
 
@@ -124,6 +147,31 @@ public class FragmentOperacoes extends Fragment {
         btnInversoA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                double[][] inverso = controllerOperacoes.obterMatrizInversa(matrizA);
+
+                String resultado = "";
+                for (int i = 0; i < inverso[0].length; i++) {
+                    resultado += "| ";
+                    for (int j = 0; j < inverso.length; j++) {
+                        resultado += " " + inverso[i][j];
+                    }
+                    resultado += " |";
+                    resultado += "\n";
+                }
+
+                // TODO: ALTERAR
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(resultado)
+                        .setTitle("Teste");
+
+                AlertDialog dialog = builder.create();
+                builder.show();
+
+
+
 
             }
         });
@@ -167,20 +215,22 @@ public class FragmentOperacoes extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+    public void receberMatrizA(double[][] matriz){
+        this.matrizA = matriz;
+    }
 
-
-
+    public void receberMatrizB(double[][] matriz){
+        this.matrizB = matriz;
+    }
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

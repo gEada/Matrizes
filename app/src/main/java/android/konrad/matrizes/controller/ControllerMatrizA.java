@@ -3,7 +3,7 @@ package android.konrad.matrizes.controller;
 import android.konrad.matrizes.model.ModelMatriz;
 import android.konrad.matrizes.model.ModelMatrizA;
 
-public class ControllerMatrizA extends ControllerMatriz {
+public class ControllerMatrizA extends ControllerMatriz  {
 
 
 
